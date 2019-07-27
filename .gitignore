@@ -1,0 +1,9 @@
+node_modules
+package-lock.json
+yarn.lock
+.vscode/
+*~
+*.swp
+*.sublime*
+.DS_STORE
+npm-debug.log

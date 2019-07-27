@@ -1,0 +1,58 @@
+{
+  "name": "babel-plugin-transform-import-meta",
+  "version": "1.0.0",
+  "description": "Transforms import.meta for nodejs environments",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/javiertury/babel-plugin-transform-import-meta"
+  },
+  "license": "BSD",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "lib/index.js",
+  "author": "Javier Garcia <javiertury@gmail.com>",
+  "keywords": [
+    "babel-plugin",
+    "import-meta"
+  ],
+  "scripts": {
+    "clean": "rm -rf lib",
+    "build": "babel src -d lib",
+    "prepublish": "npm run clean && npm run build"
+  },
+  "dependencies": {
+    "@babel/plugin-syntax-import-meta": "^7.2.0",
+    "@babel/template": "^7.4.4",
+    "eslint": "^6.1.0",
+    "husky": "^3.0.1",
+    "lint-staged": "^9.2.1"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.0.0-0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.5.5"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "*.js": "eslint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  }
+}
