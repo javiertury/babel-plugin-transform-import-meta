@@ -7,17 +7,20 @@
     "url": "https://github.com/javiertury/babel-plugin-transform-import-meta"
   },
   "license": "BSD",
-  "publishConfig": {
-    "access": "public"
-  },
-  "main": "lib/index.js",
-  "module": "lib/index.esm.js",
-  "types": "lib/index.d.ts",
   "author": "Javier Garcia <javiertury@gmail.com>",
   "keywords": [
     "babel-plugin",
     "import-meta"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "module": "lib/index.esm.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "clean": "rimraf lib",
     "build": "rollup -c rollup.config.js",
