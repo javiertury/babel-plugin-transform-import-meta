@@ -11,32 +11,55 @@
     "access": "public"
   },
   "main": "lib/index.js",
+  "module": "lib/index.esm.js",
+  "types": "lib/index.d.ts",
   "author": "Javier Garcia <javiertury@gmail.com>",
   "keywords": [
     "babel-plugin",
     "import-meta"
   ],
   "scripts": {
-    "clean": "rm -rf lib",
-    "build": "babel src -d lib",
-    "prepare": "npm run clean && npm run build"
+    "clean": "rimraf lib",
+    "build": "rollup -c rollup.config.js",
+    "lint": "eslint --ext ts --max-warnings=0 .",
+    "test": "jest",
+    "prepack": "npm run lint && npm run clean && npm run build",
+    "prepublishOnly": "npm run test",
+    "release": "standard-version"
   },
   "dependencies": {
-    "@babel/plugin-syntax-import-meta": "^7.2.0",
-    "@babel/template": "^7.4.4"
+    "@babel/template": "^7.4.4",
+    "tslib": "^2.2.0"
   },
   "peerDependencies": {
-    "@babel/core": "^7.0.0-0"
+    "@babel/core": "^7.10.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.4.4",
-    "@babel/preset-env": "^7.5.5",
-    "@commitlint/cli": "^8.2.0",
-    "@commitlint/config-conventional": "^8.2.0",
-    "eslint": "^6.1.0",
-    "husky": "^3.0.1",
-    "lint-staged": "^9.2.1"
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.13.16",
+    "@babel/types": "^7.13.17",
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-conventional": "^12.1.1",
+    "@rollup/plugin-node-resolve": "^11.2.1",
+    "@types/babel__core": "^7.1.14",
+    "@types/babel__template": "^7.4.0",
+    "@types/jest": "^26.0.22",
+    "@typescript-eslint/eslint-plugin": "4",
+    "eslint": "7",
+    "eslint-config-standard-with-typescript": "^20.0.0",
+    "eslint-plugin-import": "2",
+    "eslint-plugin-node": "11",
+    "eslint-plugin-promise": "4",
+    "jest": "^26.6.3",
+    "lint-staged": "^10.5.4",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.45.2",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "simple-git-hooks": "^2.3.1",
+    "standard-version": "^9.2.0",
+    "strip-indent": "^3.0.0",
+    "ts-jest": "^26.5.5",
+    "typescript": "^4.2.4"
   },
   "commitlint": {
     "extends": [
@@ -44,17 +67,10 @@
     ]
   },
   "lint-staged": {
-    "*.js": "eslint"
+    "*.ts": "eslint"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ]
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged",
+    "commit-msg": "npx commitlint -e"
   }
 }

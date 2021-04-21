@@ -1,0 +1,99 @@
+Arguments: 
+  /home/javier/.asdf/installs/nodejs/12.18.1/bin/node /home/javier/.asdf/installs/nodejs/12.18.1/.npm/bin/yarn install
+
+PATH: 
+  /home/javier/.asdf/installs/nodejs/12.18.1/bin:/home/javier/.asdf/installs/nodejs/12.18.1/.npm/bin::/home/javier/.asdf/shims:/home/javier/.asdf/bin:/usr/lib64/qt-3.3/bin:/usr/share/Modules/bin:/usr/condabin:/usr/lib64/ccache:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/javier/.local/bin:/home/javier/bin:/home/javier/.config/yarn/global/node_modules/.bin/:/home/javier/.local/bin:/home/javier/bin:/home/javier/.config/yarn/global/node_modules/.bin/:/home/javier/.local/bin:/home/javier/bin:/home/javier/.config/yarn/global/node_modules/.bin/:/home/javier/.local/bin:/home/javier/bin:/home/javier/.config/yarn/global/node_modules/.bin/
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  12.18.1
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: EEXIST: file already exists, mkdir '/home/javier/Documents/Projectos/babel-plugin-transform-import-meta/node_modules/@commitlint/config-conventional/node_modules'
+
+npm manifest: 
+  {
+    "name": "babel-plugin-transform-import-meta",
+    "version": "1.0.1",
+    "description": "Transforms import.meta for nodejs environments",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/javiertury/babel-plugin-transform-import-meta"
+    },
+    "license": "BSD",
+    "publishConfig": {
+      "access": "public"
+    },
+    "main": "lib/index.js",
+    "module": "lib/index.esm.js",
+    "types": "lib/index.d.ts",
+    "author": "Javier Garcia <javiertury@gmail.com>",
+    "keywords": [
+      "babel-plugin",
+      "import-meta"
+    ],
+    "scripts": {
+      "clean": "rm -rf lib",
+      "build": "rollup -c rollup.config.js",
+      "prepack": "yarn run lint && yarn run clean && yarn run build",
+      "test": "jest",
+      "lint": "eslint --ext ts --max-warnings=0 .",
+      "release": "standard-version"
+    },
+    "dependencies": {
+      "@babel/template": "^7.4.4",
+      "tslib": "^2.2.0"
+    },
+    "peerDependencies": {
+      "@babel/core": "^7.10.0"
+    },
+    "devDependencies": {
+      "@babel/cli": "^7.13.16",
+      "@babel/core": "^7.13.16",
+      "@babel/types": "^7.13.17",
+      "@commitlint/cli": "^8.2.0",
+      "@commitlint/config-conventional": "^8.2.0",
+      "@rollup/plugin-node-resolve": "^11.2.1",
+      "@types/babel__core": "^7.1.14",
+      "@types/babel__template": "^7.4.0",
+      "@types/jest": "^26.0.22",
+      "@typescript-eslint/eslint-plugin": "4",
+      "eslint": "7",
+      "eslint-config-standard-with-typescript": "^20.0.0",
+      "eslint-plugin-import": "2",
+      "eslint-plugin-node": "11",
+      "eslint-plugin-promise": "4",
+      "jest": "^26.6.3",
+      "lint-staged": "^9.2.1",
+      "rollup": "^2.45.2",
+      "rollup-plugin-typescript2": "^0.30.0",
+      "simple-git-hooks": "^2.3.1",
+      "standard-version": "^9.2.0",
+      "strip-indent": "^3.0.0",
+      "ts-jest": "^26.5.5",
+      "typescript": "^4.2.4"
+    },
+    "commitlint": {
+      "extends": [
+        "@commitlint/config-conventional"
+      ]
+    },
+    "lint-staged": {
+      "*.ts": "eslint"
+    },
+    "simple-git-hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -e"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

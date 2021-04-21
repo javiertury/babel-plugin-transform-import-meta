@@ -1,49 +1,71 @@
 {
+  "root": true,
   "env": {
-    "node": true,
     "es6": true,
-    "mocha": true
-  },
-  "extends": [
-    "eslint:recommended"
-  ],
-  "rules": {
-    "mocha/no-exclusive-tests": "error",
-    "mocha/no-skipped-tests": "warn",
-    "strict": [
-      "error",
-      "global"
-    ],
-    "no-console": "off",
-    "indent": [
-      "error",
-      2,
-      {
-        "SwitchCase": 1,
-        "MemberExpression": 0
-      }
-    ],
-    "linebreak-style": [
-      "error",
-      "unix"
-    ],
-    "quotes": [
-      "error",
-      "single"
-    ],
-    "semi": [
-      "error",
-      "always"
-    ]
-  },
-  "parserOptions": {
-    "sourceType": "script",
-    "ecmaVersion": 6,
-    "ecmaFeatures": {
-      "spread": true
-    }
+    "node": true,
+    "jest": true
   },
   "plugins": [
-    "mocha"
-  ]
+    "import",
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "standard-with-typescript"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 8,
+    "ecmaFeatures": {
+      "spread": true
+    },
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "semi": ["error", "always"],
+    "no-extra-semi": "error",
+    "no-console": ["error", {
+      "allow": [
+        "error",
+        "warn"
+      ]
+    }],
+    "@typescript-eslint/semi": ["error", "always"],
+    "@typescript-eslint/strict-boolean-expressions": ["error", {
+      "allowString": true,
+      "allowNumber": true,
+      "allowNullableObject": true
+    }],
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-dynamic-delete": "off",
+    "@typescript-eslint/ban-types": ["error", {
+      "types": {
+        "object": false
+      }
+    }],
+    "@typescript-eslint/indent": ["error", 2, {
+      "SwitchCase": 1,
+      "VariableDeclarator": 1,
+      "outerIIFEBody": 1,
+      "MemberExpression": 1,
+      "FunctionDeclaration": { "parameters": 1, "body": 1 },
+      "FunctionExpression": { "parameters": 1, "body": 1 },
+      "CallExpression": { "arguments": 1 },
+      "ArrayExpression": 1,
+      "ObjectExpression": 1,
+      "ImportDeclaration": 1,
+      "flatTernaryExpressions": false,
+      "ignoreComments": false,
+      "ignoredNodes": [
+        "TemplateLiteral *",
+        "TSTypeParameterInstantiation",
+        "TSTypeAliasDeclaration > TSIntersectionType",
+        "TSTypeAliasDeclaration > TSUnionType"
+      ]
+    }]
+  }
 }
