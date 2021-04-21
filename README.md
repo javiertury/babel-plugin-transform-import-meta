@@ -20,3 +20,7 @@ After the plugin is installed, configure it in `package.json`
     ]
   },
 ```
+
+## Credits
+
+Based on a previous project "babel-plugin-import-meta" by The Polymer Authors
