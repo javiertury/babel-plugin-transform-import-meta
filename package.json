@@ -22,6 +22,7 @@
   "module": "lib/index.esm.js",
   "types": "lib/index.d.ts",
   "scripts": {
+    "prepare": "simple-git-hooks",
     "clean": "rimraf lib",
     "build": "rollup -c rollup.config.js",
     "lint": "eslint --ext ts --max-warnings=0 .",
