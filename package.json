@@ -27,8 +27,8 @@
     "build": "rollup -c rollup.config.js",
     "lint": "eslint --ext ts --max-warnings=0 .",
     "test": "jest",
-    "prepack": "npm run lint && npm run clean && npm run build",
-    "prepublishOnly": "npm run test",
+    "prepack": "pnpm run lint && pnpm run clean && pnpm run build",
+    "prepublishOnly": "pnpm run test",
     "release": "standard-version"
   },
   "dependencies": {
@@ -59,7 +59,7 @@
     "rimraf": "^3.0.2",
     "rollup": "^2.45.2",
     "rollup-plugin-typescript2": "^0.30.0",
-    "simple-git-hooks": "^2.3.1",
+    "simple-git-hooks": "^2.4.1",
     "standard-version": "^9.2.0",
     "strip-indent": "^3.0.0",
     "ts-jest": "^26.5.5",
@@ -74,7 +74,7 @@
     "*.ts": "eslint"
   },
   "simple-git-hooks": {
-    "pre-commit": "npx lint-staged",
-    "commit-msg": "npx commitlint -e"
+    "pre-commit": "pnpx lint-staged",
+    "commit-msg": "pnpx commitlint -e"
   }
 }
