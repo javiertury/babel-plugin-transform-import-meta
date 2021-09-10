@@ -18,8 +18,13 @@
   "files": [
     "lib"
   ],
+  "type": "commonjs",
   "main": "lib/index.js",
-  "module": "lib/index.esm.js",
+  "module": "lib/index.esm.mjs",
+  "exports": {
+    "require": "./lib/index.js",
+    "import": "./lib/index.esm.mjs"
+  },
   "types": "lib/index.d.ts",
   "scripts": {
     "prepare": "simple-git-hooks",
