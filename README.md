@@ -1,6 +1,16 @@
 # babel-plugin-transform-import-meta
 
-Transforms import.meta for nodejs environments.
+Transforms import.meta for nodejs environments. This plugin replaces any occurrence of `import.meta.url`.
+
+```js
+console.log(import.meta.url);
+```
+
+And outputs code compatible with CommonJS
+
+```js
+console.log(require('url').pathToFileURL(__filename).toString());
+```
 
 ## Installation
 
