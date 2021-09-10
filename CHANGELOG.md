@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/javiertury/babel-plugin-transform-import-meta/compare/v2.0.0...v2.1.0) (2021-09-10)
+
+
+### Features
+
+* switch to pnpm ([22e8ab9](https://github.com/javiertury/babel-plugin-transform-import-meta/commit/22e8ab91c2fcc8efb33f154ae7f8469f6b0e20e7))
+
+
+### Bug Fixes
+
+* "package.json#exports" and "mjs" extension ([f4597ea](https://github.com/javiertury/babel-plugin-transform-import-meta/commit/f4597eafb9d4668f1ae283ba879d8d6cc86820de))
+* **release:** publish only files in lib ([0d152b7](https://github.com/javiertury/babel-plugin-transform-import-meta/commit/0d152b7d08bff80279fc6907a69b6d8134d22d4b))
+
 ## 2.0.0 (2021-04-21)
 
 
