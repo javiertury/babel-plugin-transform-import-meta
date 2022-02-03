@@ -1,4 +1,4 @@
-import template from '@babel/template';
+import { smart as template } from '@babel/template';
 import type { PluginObj, NodePath } from '@babel/core';
 import type { Statement, MemberExpression } from '@babel/types';
 
