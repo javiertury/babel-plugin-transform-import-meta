@@ -1,8 +1,6 @@
-import { smart as template } from '@babel/template';
+import { smart } from '@babel/template';
 import type { PluginObj, NodePath } from '@babel/core';
 import type { Statement, MemberExpression } from '@babel/types';
-
-const ast = template.ast;
 
 /**
  * Rewrites known `import.meta`[1] properties into equivalent non-module node.js
@@ -45,7 +43,7 @@ export default function (): PluginObj {
         }
 
         for (const meta of metas) {
-          meta.replaceWith(ast`require('url').pathToFileURL(__filename).toString()` as Statement);
+          meta.replaceWith(smart.ast`require('url').pathToFileURL(__filename).toString()` as Statement);
         }
       }
     }
