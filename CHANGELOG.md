@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/javiertury/babel-plugin-transform-import-meta/compare/v2.1.0...v2.1.1) (2022-02-03)
+
+
+### Bug Fixes
+
+* import ast from smart instead of default export of @babel/template ([88e058f](https://github.com/javiertury/babel-plugin-transform-import-meta/commit/88e058f4b4bc5ba3048a815b0b9fe3edcb43f8de))
+
 ## [2.1.0](https://github.com/javiertury/babel-plugin-transform-import-meta/compare/v2.0.0...v2.1.0) (2021-09-10)
 
 
