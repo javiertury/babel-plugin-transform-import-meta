@@ -6,7 +6,7 @@ Transforms import.meta for nodejs environments. This plugin replaces any occurre
 console.log(import.meta.url);
 ```
 
-And outputs code compatible with CommonJS
+With this
 
 ```js
 console.log(require('url').pathToFileURL(__filename).toString());
@@ -14,21 +14,34 @@ console.log(require('url').pathToFileURL(__filename).toString());
 
 ## Installation
 
+Install this package
+
 ```javascript
 npm install --save-dev babel-plugin-transform-import-meta
 ```
 
-After the plugin is installed, configure it in `package.json`
+And configure it
 
+```json
+{
+  "plugins": [
+    "babel-plugin-transform-import-meta"
+  ]
+}
 ```
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-    ],
-    "plugins": [
-      "babel-plugin-transform-import-meta"
-    ]
-  },
+
+# Settings
+
+## ES6 modules
+
+It's possible to use ES6 modules for the output. Useful to delegate module transformation to other plugins.
+
+```json
+{
+  "plugins": [
+    ["babel-plugin-transform-import-meta", { "module": "ES6" }]
+  ]
+}
 ```
 
 ## Credits
