@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0-alpha.0](https://github.com/javiertury/babel-plugin-transform-import-meta/compare/v2.1.1...v2.2.0-alpha.0) (2022-06-21)
+
+
+### Features
+
+* add support for ES6 targets ([f578cbd](https://github.com/javiertury/babel-plugin-transform-import-meta/commit/f578cbda4718efba5ba4f1e01f329042e6de490c)), closes [#5](https://github.com/javiertury/babel-plugin-transform-import-meta/issues/5)
+
 ### [2.1.1](https://github.com/javiertury/babel-plugin-transform-import-meta/compare/v2.1.0...v2.1.1) (2022-02-03)
 
 
