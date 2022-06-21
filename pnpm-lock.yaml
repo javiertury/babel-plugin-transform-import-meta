@@ -25,7 +25,7 @@ specifiers:
   rollup-plugin-typescript2: ^0.32.1
   simple-git-hooks: ^2.8.0
   standard-version: ^9.5.0
-  strip-indent: ^4.0.0
+  ts-dedent: ^2.2.0
   ts-jest: ^28.0.5
   tslib: ^2.4.0
   typescript: ^4.7.4
@@ -58,7 +58,7 @@ devDependencies:
   rollup-plugin-typescript2: 0.32.1_okefoyb4o5sittgqayreuhurei
   simple-git-hooks: 2.8.0
   standard-version: 9.5.0
-  strip-indent: 4.0.0
+  ts-dedent: 2.2.0
   ts-jest: 28.0.5_6oimgx2wyzf35jw5emqiiulwaa
   typescript: 4.7.4
 
@@ -4963,13 +4963,6 @@ packages:
       min-indent: 1.0.1
     dev: true
 
-  /strip-indent/4.0.0:
-    resolution: {integrity: sha512-mnVSV2l+Zv6BLpSD/8V87CW/y9EmmbYzGCIavsnsI6/nwn26DwffM/yztm30Z/I2DY9wdS3vXVCMnHDgZaVNoA==}
-    engines: {node: '>=12'}
-    dependencies:
-      min-indent: 1.0.1
-    dev: true
-
   /strip-json-comments/3.1.1:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
@@ -5078,6 +5071,11 @@ packages:
   /trim-newlines/3.0.0:
     resolution: {integrity: sha512-C4+gOpvmxaSMKuEf9Qc134F1ZuOHVXKRbtEflf4NTtuuJDEIJ9p5PXsalL8SkeRw+qit1Mo+yuvMPAKwWg/1hA==}
     engines: {node: '>=8'}
+    dev: true
+
+  /ts-dedent/2.2.0:
+    resolution: {integrity: sha512-q5W7tVM71e2xjHZTlgfTDoPF/SmqKG5hddq9SzR49CH2hayqRKJtQ4mtRlSxKaJlR/+9rEM+mnBHf7I2/BQcpQ==}
+    engines: {node: '>=6.10'}
     dev: true
 
   /ts-jest/28.0.5_6oimgx2wyzf35jw5emqiiulwaa:
