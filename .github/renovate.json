@@ -1,0 +1,8 @@
+{
+  "extends": [
+    ":disableDevDependencies",
+    ":preserveSemverRanges",
+    ":automergeDisabled",
+    ":semanticCommits"
+  ]
+}
