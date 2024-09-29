@@ -20,7 +20,7 @@ Install this package
 npm install --save-dev babel-plugin-transform-import-meta
 ```
 
-And configure it
+and add it to your babel plugins in `babel.config.json`
 
 ```json
 {
