@@ -68,6 +68,51 @@ describe('babel-plugin-import-meta', () => {
       expect(result.trim()).toEqual(expected.trim());
     });
 
+    test('transforms import.meta.filename', () => {
+      const input = dedent(`
+        console.log(import.meta.filename);
+      `);
+
+      const expected = dedent(`
+        console.log(__filename);
+      `);
+      const result = babelCore.transform(input, {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
+      })?.code ?? '';
+      expect(result.trim()).toEqual(expected.trim());
+    });
+
+    test('transforms import.meta.dirname', () => {
+      const input = dedent(`
+        console.log(import.meta.dirname);
+      `);
+
+      const expected = dedent(`
+        console.log(__dirname);
+      `);
+      const result = babelCore.transform(input, {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
+      })?.code ?? '';
+      expect(result.trim()).toEqual(expected.trim());
+    });
+
+    test('transforms import.meta.resolve', () => {
+      const input = dedent(`
+        console.log(import.meta.resolve(myCustomFunction('path', 'file')));
+      `);
+
+      const expected = dedent(`
+        console.log(require('url').pathToFileURL(require.resolve(myCustomFunction('path', 'file'))).toString());
+      `);
+      const result = babelCore.transform(input, {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
+      })?.code ?? '';
+      expect(result.trim()).toEqual(expected.trim());
+    });
+
     unknownKeysSpec(pluginOptions);
   });
 
@@ -103,6 +148,53 @@ describe('babel-plugin-import-meta', () => {
         import path from 'path';
         console.log('foo');
         console.log(url.pathToFileURL(__filename).toString());
+      `);
+      const result = babelCore.transform(input, {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
+      })?.code ?? '';
+      expect(result.trim()).toEqual(expected.trim());
+    });
+
+    test('transforms import.meta.filename', () => {
+      const input = dedent(`
+        console.log(import.meta.filename);
+      `);
+
+      const expected = dedent(`
+        console.log(__filename);
+      `);
+      const result = babelCore.transform(input, {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
+      })?.code ?? '';
+      expect(result.trim()).toEqual(expected.trim());
+    });
+
+    test('transforms import.meta.dirname', () => {
+      const input = dedent(`
+        console.log(import.meta.dirname);
+      `);
+
+      const expected = dedent(`
+        console.log(__dirname);
+      `);
+      const result = babelCore.transform(input, {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
+      })?.code ?? '';
+      expect(result.trim()).toEqual(expected.trim());
+    });
+
+    test('transforms import.meta.resolve', () => {
+      const input = dedent(`
+        console.log(import.meta.resolve(myCustomFunction('path', 'file')));
+      `);
+
+      const expected = dedent(`
+        import { createRequire } from 'module';
+        import url from 'url';
+        console.log(url.pathToFileURL(createRequire(url.pathToFileURL(__filename).toString()).resolve(myCustomFunction('path', 'file'))).toString());
       `);
       const result = babelCore.transform(input, {
         // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
