@@ -1,12 +1,55 @@
 # babel-plugin-transform-import-meta
 
-Transforms import.meta for nodejs environments. This plugin replaces any occurrence of `import.meta.url`.
+Transforms `import.meta` for nodejs environments. This plugin supports transforming the following apis:
+
+- `import.meta.dirname`
+- `import.meta.filename`
+- `import.meta.resolve(specifier)`
+- `import.meta.url`
+
+## `import.meta.dirname`
+
+```js
+console.log(import.meta.dirname);
+```
+
+Is replaced with
+
+```js
+console.log(__dirname);
+```
+
+## `import.meta.filename`
+
+```js
+console.log(import.meta.filename);
+```
+
+Is replaced with
+
+```js
+console.log(__filename);
+```
+
+## `import.meta.resolve(specifier)`
+
+```js
+console.log(import.meta.resolve(myCustomFunction('path', 'file')));
+```
+
+Is replaced with
+
+```js
+console.log(require('url').pathToFileURL(require.resolve(myCustomFunction('path', 'file'))).toString());
+```
+
+## `import.meta.url`
 
 ```js
 console.log(import.meta.url);
 ```
 
-With this
+Is replaced with
 
 ```js
 console.log(require('url').pathToFileURL(__filename).toString());
@@ -16,7 +59,7 @@ console.log(require('url').pathToFileURL(__filename).toString());
 
 Install this package
 
-```javascript
+```sh
 npm install --save-dev babel-plugin-transform-import-meta
 ```
 
@@ -30,9 +73,9 @@ and add it to your babel plugins in `babel.config.json`
 }
 ```
 
-# Settings
+## Settings
 
-## ES6 modules
+### ES6 modules
 
 It's possible to use ES6 modules for the output. Useful to delegate module transformation to other plugins.
 

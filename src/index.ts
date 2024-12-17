@@ -36,6 +36,7 @@ export default function (): PluginObj {
         const urlScopeIdentifiers = new Set<string>();
         const resolveScopeIdentifiers = new Set<string>();
 
+        // Gather all of the relevant data for import.meta's that we're going to replace later.
         path.traverse({
           MemberExpression (memberExpPath) {
             const { node } = memberExpPath;
@@ -111,6 +112,7 @@ export default function (): PluginObj {
           }
         });
 
+        // For url and resolve, we'll potentially need to add imports, depending on the target.
         if ((urlMetas.length !== 0) || (resolveMetas.length !== 0)) {
           let metaUrlReplacement: Statement;
           let metaResolveReplacement: ((args: Array<ArgumentPlaceholder | JSXNamespacedName | SpreadElement | Expression>) => Statement);
@@ -138,7 +140,7 @@ export default function (): PluginObj {
                 path.node.body.unshift(smart.ast`import { createRequire as ${createRequireId} } from 'module';` as Statement);
               }
               metaUrlReplacement = smart.ast`${urlId}.pathToFileURL(__filename).toString()` as Statement;
-              metaResolveReplacement = (args) => smart.ast`${urlId}.pathToFileURL(createRequire(${urlId}.pathToFileURL(__filename).toString()).resolve(${args})).toString()` as Statement;
+              metaResolveReplacement = (args) => smart.ast`${urlId}.pathToFileURL(${createRequireId}(${urlId}.pathToFileURL(__filename).toString()).resolve(${args})).toString()` as Statement;
               break;
             }
           }
