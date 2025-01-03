@@ -300,9 +300,7 @@ describe('babel-plugin-import-meta', () => {
         import _url from 'url';
         import path from 'path';
         const url = '123';
-
         const createRequire = () => {};
-
         console.log(_url.pathToFileURL(_createRequire(_url.pathToFileURL(__filename).toString()).resolve(myCustomFunction('path', 'file'))).toString());
       `);
       const result = babelCore.transform(input, {
