@@ -1363,6 +1363,7 @@ packages:
   eslint@8.18.0:
     resolution: {integrity: sha512-As1EfFMVk7Xc6/CvhssHUjsAQSkpfXvUGMFC3ce8JDe6WvqCgRrLOBQbVpsBFr1X1V+RACOadnzVvcUS5ni2bA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   espree@9.3.2:
@@ -2731,8 +2732,8 @@ packages:
     resolution: {integrity: sha512-tk2G5R2KRwBd+ZN0zaEXpmzdKyOYksXwywulIX95MBODjSzMIuQnQ3m8JxgbhnL1LeVo7lqQKsYa1O3Htl7K5g==}
     engines: {node: '>=18'}
 
-  trim-newlines@3.0.0:
-    resolution: {integrity: sha512-C4+gOpvmxaSMKuEf9Qc134F1ZuOHVXKRbtEflf4NTtuuJDEIJ9p5PXsalL8SkeRw+qit1Mo+yuvMPAKwWg/1hA==}
+  trim-newlines@3.0.1:
+    resolution: {integrity: sha512-c1PTsA3tYrIsLGkJkzHF+w9F2EyxfXGo4UyJc4pFL++FMjnq0HJS69T3M7d//gKrFKwy429bouPescbjecU+Zw==}
     engines: {node: '>=8'}
 
   ts-dedent@2.2.0:
@@ -5536,7 +5537,7 @@ snapshots:
       normalize-package-data: 3.0.2
       read-pkg-up: 7.0.1
       redent: 3.0.0
-      trim-newlines: 3.0.0
+      trim-newlines: 3.0.1
       type-fest: 0.18.1
       yargs-parser: 20.2.7
 
@@ -6121,7 +6122,7 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  trim-newlines@3.0.0: {}
+  trim-newlines@3.0.1: {}
 
   ts-dedent@2.2.0: {}
 
