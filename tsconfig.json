@@ -10,6 +10,7 @@
     "strictNullChecks": true,
     "noUncheckedIndexedAccess": true,
     "noPropertyAccessFromIndexSignature": true,
+    "exactOptionalPropertyTypes": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
     "outDir": "lib/"

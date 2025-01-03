@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-condition -- wiggle room */
 import * as babelCore from '@babel/core';
 import dedent from 'ts-dedent';
 import importMetaPlugin from './index';
 import type { PluginOptions } from './index';
 
 const unknownKeysSpec = (
-  pluginOptions?: PluginOptions | undefined
+  pluginOptions?: PluginOptions
 ) => {
   test('does not transform non-meta property', () => {
     const input = dedent(`
@@ -56,7 +57,6 @@ describe('babel-plugin-import-meta', () => {
     `);
 
     expect(() => babelCore.transform(input, {
-      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
       plugins: [[importMetaPlugin, { module: 'no-module' }]]
     })).toThrow('Invalid target, must be one of: "CommonJS" or "ES6"');
   });
@@ -73,7 +73,7 @@ describe('babel-plugin-import-meta', () => {
         console.log(require('url').pathToFileURL(__filename).toString());
       `);
       const result = babelCore.transform(input, {
-        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- comfort shortcut
         plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
       })?.code ?? '';
       expect(result.trim()).toEqual(expected.trim());
@@ -88,7 +88,7 @@ describe('babel-plugin-import-meta', () => {
         console.log(__filename);
       `);
       const result = babelCore.transform(input, {
-        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- comfort shortcut
         plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
       })?.code ?? '';
       expect(result.trim()).toEqual(expected.trim());
@@ -103,7 +103,7 @@ describe('babel-plugin-import-meta', () => {
         console.log(__dirname);
       `);
       const result = babelCore.transform(input, {
-        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- comfort shortcut
         plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
       })?.code ?? '';
       expect(result.trim()).toEqual(expected.trim());
@@ -118,7 +118,7 @@ describe('babel-plugin-import-meta', () => {
         console.log(require('url').pathToFileURL(require.resolve(myCustomFunction('path', 'file'))).toString());
       `);
       const result = babelCore.transform(input, {
-        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- comfort shortcut
         plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
       })?.code ?? '';
       expect(result.trim()).toEqual(expected.trim());
@@ -133,7 +133,7 @@ describe('babel-plugin-import-meta', () => {
         console.log(require('url').pathToFileURL(require.resolve(myCustomFunction('path', 'file'))).toString());
       `);
       const result = babelCore.transform(input, {
-        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- comfort shortcut
         plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
       })?.code ?? '';
       expect(result.trim()).toEqual(expected.trim());
@@ -155,7 +155,7 @@ describe('babel-plugin-import-meta', () => {
         console.log(url.pathToFileURL(__filename).toString());
       `);
       const result = babelCore.transform(input, {
-        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- comfort shortcut
         plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
       })?.code ?? '';
       expect(result.trim()).toEqual(expected.trim());
@@ -176,7 +176,7 @@ describe('babel-plugin-import-meta', () => {
         console.log(url.pathToFileURL(__filename).toString());
       `);
       const result = babelCore.transform(input, {
-        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- comfort shortcut
         plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
       })?.code ?? '';
       expect(result.trim()).toEqual(expected.trim());
@@ -191,7 +191,7 @@ describe('babel-plugin-import-meta', () => {
         console.log(__filename);
       `);
       const result = babelCore.transform(input, {
-        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- comfort shortcut
         plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
       })?.code ?? '';
       expect(result.trim()).toEqual(expected.trim());
@@ -206,7 +206,7 @@ describe('babel-plugin-import-meta', () => {
         console.log(__dirname);
       `);
       const result = babelCore.transform(input, {
-        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- comfort shortcut
         plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
       })?.code ?? '';
       expect(result.trim()).toEqual(expected.trim());
@@ -223,7 +223,7 @@ describe('babel-plugin-import-meta', () => {
         console.log(url.pathToFileURL(createRequire(url.pathToFileURL(__filename).toString()).resolve(myCustomFunction('path', 'file'))).toString());
       `);
       const result = babelCore.transform(input, {
-        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- comfort shortcut
         plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
       })?.code ?? '';
       expect(result.trim()).toEqual(expected.trim());
@@ -240,7 +240,7 @@ describe('babel-plugin-import-meta', () => {
         console.log(url.pathToFileURL(createRequire(url.pathToFileURL(__filename).toString()).resolve(myCustomFunction('path', 'file'))).toString());
       `);
       const result = babelCore.transform(input, {
-        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- comfort shortcut
         plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
       })?.code ?? '';
       expect(result.trim()).toEqual(expected.trim());
@@ -260,7 +260,7 @@ describe('babel-plugin-import-meta', () => {
         console.log(url.pathToFileURL(createRequire(url.pathToFileURL(__filename).toString()).resolve(myCustomFunction('path', 'file'))).toString());
       `);
       const result = babelCore.transform(input, {
-        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- comfort shortcut
         plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
       })?.code ?? '';
       expect(result.trim()).toEqual(expected.trim());
@@ -280,7 +280,7 @@ describe('babel-plugin-import-meta', () => {
         console.log(url.pathToFileURL(createRequire(url.pathToFileURL(__filename).toString()).resolve(myCustomFunction('path', 'file'))).toString());
       `);
       const result = babelCore.transform(input, {
-        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- comfort shortcut
         plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
       })?.code ?? '';
       expect(result.trim()).toEqual(expected.trim());
@@ -306,7 +306,7 @@ describe('babel-plugin-import-meta', () => {
         console.log(_url.pathToFileURL(_createRequire(_url.pathToFileURL(__filename).toString()).resolve(myCustomFunction('path', 'file'))).toString());
       `);
       const result = babelCore.transform(input, {
-        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- comfort shortcut
         plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
       })?.code ?? '';
       expect(result.trim()).toEqual(expected.trim());

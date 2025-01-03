@@ -23,8 +23,10 @@ export default function (): PluginObj {
     name: 'transform-import-meta',
 
     visitor: {
+      // eslint-disable-next-line complexity -- I don't know how to do it better
       Program (path, state) {
         const { module: target = 'CommonJS' } = (state.opts as PluginOptions | undefined) ?? {};
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- user input may not match type
         if (target !== 'CommonJS' && target !== 'ES6') {
           throw new Error('Invalid target, must be one of: "CommonJS" or "ES6"');
         }
@@ -38,6 +40,7 @@ export default function (): PluginObj {
 
         // Gather all of the relevant data for import.meta's that we're going to replace later.
         path.traverse({
+          // eslint-disable-next-line complexity -- I don't know how to do it better
           MemberExpression (memberExpPath) {
             const { node } = memberExpPath;
 
@@ -74,11 +77,11 @@ export default function (): PluginObj {
               dirnameMetas.push(memberExpPath);
             }
           },
+          // eslint-disable-next-line complexity -- I don't know how to do it better
           CallExpression (callExpPath) {
             const { node } = callExpPath;
 
             if (
-              node.type === 'CallExpression' &&
               node.callee.type === 'MemberExpression' &&
               node.callee.object.type === 'MetaProperty' &&
               node.callee.object.meta.name === 'import' &&
@@ -92,11 +95,11 @@ export default function (): PluginObj {
               }
             }
           },
+          // eslint-disable-next-line complexity -- I don't know how to do it better
           OptionalCallExpression (callExpPath) {
             const { node } = callExpPath;
 
             if (
-              node.type === 'OptionalCallExpression' &&
               node.callee.type === 'MemberExpression' &&
               node.callee.object.type === 'MetaProperty' &&
               node.callee.object.meta.name === 'import' &&
@@ -114,12 +117,16 @@ export default function (): PluginObj {
 
         // For url and resolve, we'll potentially need to add imports, depending on the target.
         if ((urlMetas.length !== 0) || (resolveMetas.length !== 0)) {
+          // eslint-disable-next-line @typescript-eslint/init-declarations -- no obvious default
           let metaUrlReplacement: Statement;
+          // eslint-disable-next-line @typescript-eslint/init-declarations -- no obvious default
           let metaResolveReplacement: ((args: Array<ArgumentPlaceholder | JSXNamespacedName | SpreadElement | Expression>) => Statement);
 
           switch (target) {
             case 'CommonJS': {
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- deterministic casting
               metaUrlReplacement = smart.ast`require('url').pathToFileURL(__filename).toString()` as Statement;
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- deterministic casting
               metaResolveReplacement = (args) => smart.ast`require('url').pathToFileURL(require.resolve(${args})).toString()` as Statement;
               break;
             }
@@ -135,11 +142,15 @@ export default function (): PluginObj {
                 createRequireId = path.scope.generateUidIdentifier('createRequire').name;
               }
 
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- deterministic casting
               path.node.body.unshift(smart.ast`import ${urlId} from 'url';` as Statement);
               if (resolveMetas.length !== 0) {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- deterministic casting
                 path.node.body.unshift(smart.ast`import { createRequire as ${createRequireId} } from 'module';` as Statement);
               }
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- deterministic casting
               metaUrlReplacement = smart.ast`${urlId}.pathToFileURL(__filename).toString()` as Statement;
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- deterministic casting
               metaResolveReplacement = (args) => smart.ast`${urlId}.pathToFileURL(${createRequireId}(${urlId}.pathToFileURL(__filename).toString()).resolve(${args})).toString()` as Statement;
               break;
             }
@@ -154,7 +165,9 @@ export default function (): PluginObj {
           }
         }
 
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- deterministic casting
         const metaFilenameReplacement: Statement = smart.ast`__filename` as Statement;
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- deterministic casting
         const metaDirnameReplacement: Statement = smart.ast`__dirname` as Statement;
 
         for (const meta of filenameMetas) {
