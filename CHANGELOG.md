@@ -1,6 +1,15 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+## [2.3.0](https://github.com/javiertury/babel-plugin-transform-import-meta/compare/v2.2.1...v2.3.0) (2025-01-03)
+
+
+### Features
+
+* add support for additional meta apis ([e011988](https://github.com/javiertury/babel-plugin-transform-import-meta/commit/e011988664ea3893f852e0d5b511cb060985a90d))
+* new import.meta apis ([185992a](https://github.com/javiertury/babel-plugin-transform-import-meta/commit/185992a12fe1086924e75040dac2e73b28998137))
+* update eslint, rollup and other dependencies ([5ea0a08](https://github.com/javiertury/babel-plugin-transform-import-meta/commit/5ea0a08e8a3d7fe732358c5821797602519e59d3))
 
 ### [2.2.1](https://github.com/javiertury/babel-plugin-transform-import-meta/compare/v2.2.0...v2.2.1) (2023-08-04)
 
