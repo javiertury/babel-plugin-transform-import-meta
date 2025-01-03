@@ -7,7 +7,7 @@ export default [
     languageOptions: {
       parserOptions: {
         projectService: {
-          allowDefaultProject: ['eslint.config.js', 'eslint.config.mjs', '*.js'],
+          allowDefaultProject: ['eslint.config.js', 'eslint.config.mjs', '*.js', '*.mjs'],
           defaultProject: './tsconfig.json',
         },
       },

@@ -30,7 +30,7 @@
     "prepare": "simple-git-hooks",
     "clean": "rimraf lib",
     "build": "rollup -c rollup.config.mjs",
-    "lint": "eslint --ext ts --max-warnings=0 .",
+    "lint": "eslint --max-warnings=0 .",
     "test": "jest",
     "prepack": "pnpm run lint && pnpm run clean && pnpm run build",
     "prepublishOnly": "pnpm run test",
