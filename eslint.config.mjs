@@ -37,6 +37,6 @@ export default [
     },
   },
   {
-    ignores: ["lib/*"],
+    ignores: ["lib/**"],
   },
 ];
