@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/javiertury/babel-plugin-transform-import-meta"
   },
-  "license": "BSD",
+  "license": "BSD-3-Clause",
   "author": "Javier Garcia <javiertury@gmail.com>",
   "keywords": [
     "babel-plugin",
