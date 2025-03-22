@@ -139,6 +139,36 @@ describe('babel-plugin-import-meta', () => {
       expect(result.trim()).toEqual(expected.trim());
     });
 
+    test('transforms import.meta.env', () => {
+      const input = dedent(`
+        console.log(import.meta.env ? import.meta.env.MODE : 'none');
+      `);
+
+      const expected = dedent(`
+        console.log(({}) ? ({}).MODE : 'none');
+      `);
+      const result = babelCore.transform(input, {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- comfort shortcut
+        plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
+      })?.code ?? '';
+      expect(result.trim()).toEqual(expected.trim());
+    });
+
+    test('transforms import.meta.env?.key', () => {
+      const input = dedent(`
+        console.log(import.meta.env?.MODE);
+      `);
+
+      const expected = dedent(`
+        console.log(({})?.MODE);
+      `);
+      const result = babelCore.transform(input, {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- comfort shortcut
+        plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
+      })?.code ?? '';
+      expect(result.trim()).toEqual(expected.trim());
+    });
+
     unknownKeysSpec(pluginOptions);
   });
 
@@ -238,6 +268,36 @@ describe('babel-plugin-import-meta', () => {
         import { createRequire } from 'module';
         import url from 'url';
         console.log(url.pathToFileURL(createRequire(url.pathToFileURL(__filename).toString()).resolve(myCustomFunction('path', 'file'))).toString());
+      `);
+      const result = babelCore.transform(input, {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- comfort shortcut
+        plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
+      })?.code ?? '';
+      expect(result.trim()).toEqual(expected.trim());
+    });
+
+    test('transforms import.meta.env', () => {
+      const input = dedent(`
+        console.log(import.meta.env ? import.meta.env.MODE : 'none');
+      `);
+
+      const expected = dedent(`
+        console.log(({}) ? ({}).MODE : 'none');
+      `);
+      const result = babelCore.transform(input, {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- comfort shortcut
+        plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
+      })?.code ?? '';
+      expect(result.trim()).toEqual(expected.trim());
+    });
+
+    test('transforms import.meta.env?.key', () => {
+      const input = dedent(`
+        console.log(import.meta.env?.MODE);
+      `);
+
+      const expected = dedent(`
+        console.log(({})?.MODE);
       `);
       const result = babelCore.transform(input, {
         // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- comfort shortcut

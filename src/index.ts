@@ -1,5 +1,6 @@
 import { smart } from '@babel/template';
 import type { PluginObj, NodePath } from '@babel/core';
+import { objectExpression, parenthesizedExpression } from '@babel/types';
 import type { Statement, MemberExpression, CallExpression, OptionalCallExpression, ArgumentPlaceholder, JSXNamespacedName, SpreadElement, Expression } from '@babel/types';
 
 export interface PluginOptions {
@@ -34,6 +35,7 @@ export default function (): PluginObj {
         const filenameMetas: Array<NodePath<MemberExpression>> = [];
         const dirnameMetas: Array<NodePath<MemberExpression>> = [];
         const resolveMetas: Array<NodePath<CallExpression> | NodePath<OptionalCallExpression>> = [];
+        const envMetas: Array<NodePath<MemberExpression>> = [];
 
         const urlScopeIdentifiers = new Set<string>();
         const resolveScopeIdentifiers = new Set<string>();
@@ -75,6 +77,16 @@ export default function (): PluginObj {
               node.property.name === 'dirname'
             ) {
               dirnameMetas.push(memberExpPath);
+            }
+
+            if (
+              node.object.type === 'MetaProperty' &&
+              node.object.meta.name === 'import' &&
+              node.object.property.name === 'meta' &&
+              node.property.type === 'Identifier' &&
+              node.property.name === 'env'
+            ) {
+              envMetas.push(memberExpPath);
             }
           },
           // eslint-disable-next-line complexity -- I don't know how to do it better
@@ -169,6 +181,8 @@ export default function (): PluginObj {
         const metaFilenameReplacement: Statement = smart.ast`__filename` as Statement;
         // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- deterministic casting
         const metaDirnameReplacement: Statement = smart.ast`__dirname` as Statement;
+        // Replace `import.meta.env` with `({})` so that optional chaining remains valid syntax.
+        const metaEnvReplacement: Expression = parenthesizedExpression(objectExpression([]));
 
         for (const meta of filenameMetas) {
           meta.replaceWith(metaFilenameReplacement);
@@ -176,6 +190,10 @@ export default function (): PluginObj {
 
         for (const meta of dirnameMetas) {
           meta.replaceWith(metaDirnameReplacement);
+        }
+
+        for (const meta of envMetas) {
+          meta.replaceWith(metaEnvReplacement);
         }
       }
     }
