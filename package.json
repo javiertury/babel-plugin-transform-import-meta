@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-transform-import-meta",
-  "version": "2.3.2",
+  "version": "2.3.3",
   "description": "Transforms import.meta for nodejs environments",
   "repository": {
     "type": "git",
