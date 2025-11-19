@@ -58,7 +58,7 @@
     "eslint-config-love": "^114.0.0",
     "jest": "^30.2.0",
     "lint-staged": "^15.3.0",
-    "rimraf": "^6.0.1",
+    "rimraf": "^6.1.0",
     "rollup": "^4.29.1",
     "rollup-plugin-typescript2": "^0.36.0",
     "simple-git-hooks": "^2.11.1",
