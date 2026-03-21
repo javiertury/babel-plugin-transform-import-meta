@@ -77,7 +77,6 @@ export default function (): PluginObj {
               dirnameMetas.push(memberExpPath);
             }
           },
-          // eslint-disable-next-line complexity -- I don't know how to do it better
           CallExpression (callExpPath) {
             const { node } = callExpPath;
 
@@ -95,7 +94,6 @@ export default function (): PluginObj {
               }
             }
           },
-          // eslint-disable-next-line complexity -- I don't know how to do it better
           OptionalCallExpression (callExpPath) {
             const { node } = callExpPath;
 

@@ -14,7 +14,7 @@ export default {
     format: 'esm'
   }],
   plugins: [
-    nodeResolve({ resolveOnly: [/^\./] }),
+    nodeResolve({ resolveOnly: [/^\./v] }),
     typescript({ tsconfig: './tsconfig.build.json' })
   ]
 };
