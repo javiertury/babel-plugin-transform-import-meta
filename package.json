@@ -41,7 +41,7 @@
     "tslib": "^2.8.1"
   },
   "peerDependencies": {
-    "@babel/core": "^7.10.0"
+    "@babel/core": "^8.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.28.6",
