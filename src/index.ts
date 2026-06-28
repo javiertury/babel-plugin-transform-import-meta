@@ -1,5 +1,5 @@
 import { smart } from '@babel/template';
-import type { PluginObj, NodePath } from '@babel/core';
+import type { PluginObject, NodePath } from '@babel/core';
 import type { Statement, MemberExpression, CallExpression, OptionalCallExpression, ArgumentPlaceholder, JSXNamespacedName, SpreadElement, Expression } from '@babel/types';
 
 export interface PluginOptions {
@@ -18,7 +18,7 @@ export interface PluginOptions {
  * [1]: https://github.com/tc39/proposal-import-meta
  * [2]: https://html.spec.whatwg.org/#hostgetimportmetaproperties
  */
-export default function (): PluginObj {
+export default function (): PluginObject {
   return {
     name: 'transform-import-meta',
 
