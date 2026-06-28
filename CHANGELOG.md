@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [3.0.0](https://github.com/javiertury/babel-plugin-transform-import-meta/compare/v2.3.3...v3.0.0) (2026-06-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to babel 8 and replace jest with vitest
+
+### Features
+
+* upgrade to babel 8 and replace jest with vitest ([ddb781c](https://github.com/javiertury/babel-plugin-transform-import-meta/commit/ddb781ccc4d4d9ce47ab61d1bc164ec9e82fb959))
+
 ## [2.3.3](https://github.com/javiertury/babel-plugin-transform-import-meta/compare/v2.3.2...v2.3.3) (2025-06-03)
 
 ## [2.3.2](https://github.com/javiertury/babel-plugin-transform-import-meta/compare/v2.3.1...v2.3.2) (2025-01-03)
