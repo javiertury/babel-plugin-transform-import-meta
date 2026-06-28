@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES5",
+    "target": "ES6",
     "lib": ["ES2019"],
-    "moduleResolution": "node",
+    "module": "ES2015",
+    "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
@@ -13,7 +14,8 @@
     "exactOptionalPropertyTypes": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
-    "outDir": "lib/"
+    "outDir": "lib/",
+    "rootDir": "src"
   },
   "exclude": [
     "node_modules"
