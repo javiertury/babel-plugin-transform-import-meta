@@ -33,6 +33,7 @@ export default function (): PluginObject {
         const urlMetas: Array<NodePath<MemberExpression>> = [];
         const filenameMetas: Array<NodePath<MemberExpression>> = [];
         const dirnameMetas: Array<NodePath<MemberExpression>> = [];
+        const mainMetas: Array<NodePath<MemberExpression>> = [];
         const resolveMetas: Array<NodePath<CallExpression> | NodePath<OptionalCallExpression>> = [];
 
         const urlScopeIdentifiers = new Set<string>();
@@ -75,6 +76,16 @@ export default function (): PluginObject {
               node.property.name === 'dirname'
             ) {
               dirnameMetas.push(memberExpPath);
+            }
+
+            if (
+              node.object.type === 'MetaProperty' &&
+              node.object.meta.name === 'import' &&
+              node.object.property.name === 'meta' &&
+              node.property.type === 'Identifier' &&
+              node.property.name === 'main'
+            ) {
+              mainMetas.push(memberExpPath);
             }
           },
           CallExpression (callExpPath) {
@@ -167,6 +178,8 @@ export default function (): PluginObject {
         const metaFilenameReplacement: Statement = smart.ast`__filename` as Statement;
         // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- deterministic casting
         const metaDirnameReplacement: Statement = smart.ast`__dirname` as Statement;
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- deterministic casting
+        const metaMainReplacement: Statement = smart.ast`require.main === module` as Statement;
 
         for (const meta of filenameMetas) {
           meta.replaceWith(metaFilenameReplacement);
@@ -174,6 +187,10 @@ export default function (): PluginObject {
 
         for (const meta of dirnameMetas) {
           meta.replaceWith(metaDirnameReplacement);
+        }
+
+        for (const meta of mainMetas) {
+          meta.replaceWith(metaMainReplacement);
         }
       }
     }

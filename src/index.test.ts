@@ -8,7 +8,7 @@ import type { PluginOptions } from './index';
 const unknownKeysSpec = (
   pluginOptions?: PluginOptions
 ) => {
-  test('does not transform non-meta property', async () => {
+  test('does not transform non-import.meta property', async () => {
     const input = dedent(`
       console.log(foo.import.meta);
     `);
@@ -102,6 +102,21 @@ describe('babel-plugin-import-meta', () => {
 
       const expected = dedent(`
         console.log(__dirname);
+      `);
+      const result = (await babelCore.transformAsync(input, {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- comfort shortcut
+        plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
+      }))?.code ?? '';
+      expect(result.trim()).toEqual(expected.trim());
+    });
+
+    test('transforms import.meta.main', async () => {
+      const input = dedent(`
+        if (import.meta.main) main();
+      `);
+
+      const expected = dedent(`
+        if (require.main === module) main();
       `);
       const result = (await babelCore.transformAsync(input, {
         // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- comfort shortcut
@@ -205,6 +220,21 @@ describe('babel-plugin-import-meta', () => {
 
       const expected = dedent(`
         console.log(__dirname);
+      `);
+      const result = (await babelCore.transformAsync(input, {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- comfort shortcut
+        plugins: [pluginOptions ? [importMetaPlugin, pluginOptions] : importMetaPlugin]
+      }))?.code ?? '';
+      expect(result.trim()).toEqual(expected.trim());
+    });
+
+    test('transforms import.meta.main', async () => {
+      const input = dedent(`
+        if (import.meta.main) main();
+      `);
+
+      const expected = dedent(`
+        if (require.main === module) main();
       `);
       const result = (await babelCore.transformAsync(input, {
         // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- comfort shortcut
