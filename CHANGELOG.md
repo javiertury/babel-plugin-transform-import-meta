@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [3.1.0](https://github.com/javiertury/babel-plugin-transform-import-meta/compare/v3.0.0...v3.1.0) (2026-10-15)
+
+
+### Features
+
+* support import.meta.main [#42](https://github.com/javiertury/babel-plugin-transform-import-meta/issues/42) ([792d32b](https://github.com/javiertury/babel-plugin-transform-import-meta/commit/792d32bcd312024c47c2cd8a7aa57cb795ebe8bc))
+
 ## [3.0.0](https://github.com/javiertury/babel-plugin-transform-import-meta/compare/v2.3.3...v3.0.0) (2026-06-28)
 
 
